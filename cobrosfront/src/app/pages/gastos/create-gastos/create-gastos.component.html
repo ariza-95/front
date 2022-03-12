@@ -1,0 +1,69 @@
+<div class="header bg-gradient-danger py-7 py-lg-8">
+
+  <div class="container mt--10 ">
+    <!-- Table -->
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Crear Gasto</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form class="needs-validation" novalidate [formGroup]="clienteFrom" >
+            <h6 class="heading-small text-muted mb-4">Gastos information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-descripcion">Descripción</label>
+                    <input type="text" id="input-descripcion" name="pr" class="form-control form-control-alternative" formControlName="descripcion" placeholder="descripción" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-inicial">Precio</label>
+                    <input type="number" id="input-inicial"  name="ci" class="form-control form-control-alternative" formControlName="precio"  >
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <div>
+                    <label for="inputState">Tipo de gasto</label>
+                    <select id="inputState" class="browser-default custom-select" formControlName="tipoEmpleado">
+                      <option  value="" selected>selecciona un tipo</option>
+                      <option value="Materiales Oficina">Materiales Oficina</option>
+                      <option value="Transporte">Transporte</option>
+                      <option value="Varios">Varios</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-ingreso">Fecha Pago</label>
+                    <div class="input-group">
+
+                      <input class="form-control" id="input-ingreso" placeholder="yyyy-mm-dd"
+                             name="dp" formControlName="fchPago" ngbDatepicker (click)="d.toggle()"  #d="ngbDatepicker">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-outline-success" [disabled]="!clienteFrom.valid" (click)="onSave()">Guardar</button>
+              <button type="submit" class="btn btn-outline-danger" routerLink="/gastos">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Page content -->
+
+

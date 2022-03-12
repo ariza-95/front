@@ -1,0 +1,76 @@
+<div class="header bg-gradient-danger py-7 py-lg-8">
+
+  <div class="container mt--10 ">
+    <!-- Table -->
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Crear Producto</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form #f="ngForm" (ngSubmit)="onSave()" >
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Codigo</label>
+                    <input type="text" id="input-username" name="codigo" class="form-control form-control-alternative" [(ngModel)]="descripcion" placeholder="Codigo" placeholder="ejemplo123">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Nombre</label>
+                    <input type="email" id="input-email" name="na" class="form-control form-control-alternative" [(ngModel)]="nombre" placeholder="nombre">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-precio">precio</label>
+                    <input type="number" id="input-precio" name="pr" class="form-control form-control-alternative" [(ngModel)]="precio" placeholder="precio" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-inicial">Cantidad Inicial</label>
+                    <input type="number" id="input-inicial"  name="ci" class="form-control form-control-alternative" [(ngModel)]="cantidadInicial" placeholder="cantidad Inicial" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-cantidad_final">Cantidad Disponible</label>
+                    <input type="number"  name="cd" id="input-cantidad_final" class="form-control form-control-alternative" [(ngModel)]="cantidadDisponible" placeholder="cantidad disponible" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-ingreso">Fecha Ingreso</label>
+                    <div class="input-group">
+
+                      <input class="form-control" id="input-ingreso" placeholder="yyyy-mm-dd"
+                             name="dp" [(ngModel)]="fchIngreso" ngbDatepicker (click)="d.toggle()"  #d="ngbDatepicker">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-outline-success" [disabled]="!f.valid" >Guardar</button>
+              <button type="submit" class="btn btn-outline-danger" routerLink="/tables">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+<!-- Page content -->

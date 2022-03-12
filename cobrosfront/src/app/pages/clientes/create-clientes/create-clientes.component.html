@@ -1,0 +1,111 @@
+<div class="header bg-gradient-danger py-7 py-lg-8">
+
+  <div class="container mt--10 ">
+    <!-- Table -->
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Crear cliente</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form class="needs-validation" novalidate [formGroup]="clienteFrom" >
+            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Codigo</label>
+                    <input type="text" id="input-codigo"  name="codigo" class="form-control form-control-alternative" [value]="cliente.codigo" *ngIf="isEdit" disabled>
+                    <input type="text" id="input-username"  name="codigo" class="form-control form-control-alternative" formControlName="codigo" placeholder="Codigo" placeholder="ejemplo123" *ngIf="!isEdit">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Nombre</label>
+                    <input type="email" id="input-email" name="na" class="form-control form-control-alternative" formControlName="nombre" placeholder="nombre">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-precio">Dirección</label>
+                    <input type="text" id="input-precio" name="pr" class="form-control form-control-alternative" formControlName="direccion" placeholder="dirección" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-inicial">Telefono</label>
+                    <input type="number" id="input-inicial"  name="ci" class="form-control form-control-alternative" formControlName="telefono"  >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-cantidad_final">Antiguedad</label>
+                    <input type="text"  name="cd" id="input-cantidad_final" class="form-control form-control-alternative disabled" formControlName="antiguedad"  value="No" disabled>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <div>
+                    <label for="inputState">Seleccionar estado</label>
+                    <select id="inputState" class="browser-default custom-select" formControlName="estado">
+                      <option  value="" selected>selecciona un estado</option>
+                      <option value="PAGO">PAGO</option>
+                      <option value="EN COBRO">EN COBRO</option>
+                      <option value="NO PAGO">NO PAGO</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-ingreso">Fecha Venta</label>
+                    <div class="input-group">
+
+                      <input class="form-control" id="input-ingreso" placeholder="yyyy-mm-dd"
+                             name="dp" formControlName="fchVenta" ngbDatepicker (click)="d.toggle()"  #d="ngbDatepicker">
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-saldo">Saldo</label>
+                    <input type="number" id="input-saldo"  name="sa" class="form-control form-control-alternative" formControlName="saldo"  >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-deuda">Deuda</label>
+                    <input type="number" id="input-deuda"  name="de" class="form-control form-control-alternative" formControlName="deuda"  >
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <div>
+                    <label for="rutas">Selecciona una ruta</label>
+                    <select id="rutas" class="browser-default custom-select" formControlName="rutas">
+                      <option value=""  selected>Seleciona una ruta</option>
+                      <option *ngFor="let ruta of rutas" value="{{ ruta.id }}">{{ ruta.ciudad }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-outline-success" [disabled]="!clienteFrom.valid" (click)="onSave()">Guardar</button>
+              <button type="submit" class="btn btn-outline-danger" routerLink="/clientes">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Page content -->
+

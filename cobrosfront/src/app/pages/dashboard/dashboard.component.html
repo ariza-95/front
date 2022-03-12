@@ -1,0 +1,194 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Cobrado a la fecha</h5>
+                  <span class="h2 font-weight-bold mb-0">{{pendiente| currency | lowercase}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <i class="fas fa-chart-bar"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Total Ventas</h5>
+                  <span class="h2 font-weight-bold mb-0">{{total| currency | lowercase}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                    <i class="fas fa-chart-pie"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Clientes</h5>
+                  <span class="h2 font-weight-bold mb-0">{{numeroCliente}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="fas fa-users"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row mt-5">
+    <div class="col-xl-8 mb-5 mb-xl-0">
+    <div class="col-xl-8 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Pagos por Año</h3>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">Tipo de Pago</th>
+              <th scope="col">Año</th>
+              <th scope="col">Total</th>
+            </tr>
+            </thead>
+            <tbody *ngIf= "gastos !== []" >
+            <tr *ngFor= "let gasto of gastos">
+              <td>{{gasto.tipoEmpleado}}</td>
+              <td>{{gasto.anio}}</td>
+              <td>{{gasto.total | currency | lowercase}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-8 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Dinero por Ruta</h3>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">Ruta</th>
+              <th scope="col">Abonado</th>
+              <th scope="col">Total</th>
+            </tr>
+            </thead>
+            <tbody *ngIf= "dineroRutas !== []" >
+            <tr *ngFor= "let ruta of dineroRutas">
+              <td>{{ruta.rutas.ciudad}}</td>
+              <td>{{ruta.abonado| currency | lowercase}}</td>
+              <td>{{ruta.total | currency | lowercase}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-xl-12 col-lg-12">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <h3 class="mb-0">Cobradores</h3>
+            </div>
+          </div>
+          <form class="needs-validation" novalidate [formGroup]="busquedaFrom" >
+            <div class="row">
+              <div class="col-md-5 mb-3 col-lg-6"  >
+                <div>
+                  <label class="form-control-label" for="input-desde">Fecha inicio</label>
+                  <div class="input-group">
+
+                    <input class="form-control" id="input-desde" placeholder="yyyy-mm-dd"
+                           name="from" formControlName="from" ngbDatepicker (click)="h.toggle()"  #h="ngbDatepicker">
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-5 mb-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-hasta">Fecha fin</label>
+                  <div class="input-group">
+
+                    <input class="form-control" id="input-hasta" placeholder="yyyy-mm-dd"
+                           name="until" formControlName="until"  ngbDatepicker (click)="p.toggle()"  #p="ngbDatepicker">
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 ">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-outline-success align-bottom" (click)="onFindPagos()">Buscar</button>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Cobrador</th>
+                <th scope="col">Ruta</th>
+                <th scope="col">Número cobros</th>
+                <th scope="col">Total Cobrado</th>
+              </tr>
+            </thead>
+            <tbody *ngIf= "estadisticasCobros !== []" >
+            <tr *ngFor= "let cobro of estadisticasCobros">
+              <td>{{cobro.cobradores.nombre}}</td>
+              <td>{{cobro.cobradores.rutas.ciudad}}</td>
+              <td>{{cobro.totalCobros }}</td>
+              <td>{{cobro.totalCobrado | currency | lowercase}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
